@@ -130,7 +130,7 @@ var noBrute = {
         var candidateUnit,
             knownNumbers = sudoData.knownNumbers.length;
 
-        sudoData.outputText += "<li>Candidates marked: "+sudokuGrid.candidatesMarked+"</li>";
+        sudoData.outputText += "<li><b>Simple solving:</b></li><li>Candidates marked: "+sudokuGrid.candidatesMarked+"</li>";
         
         for (var i = 0; i < 50; i++) {
 

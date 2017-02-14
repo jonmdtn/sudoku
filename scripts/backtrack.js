@@ -43,6 +43,9 @@ var backtrack = {
         if (!afterNoBrute) {
             sudoData.outputText += "<li>Candidates marked: "+candNumber+"</li>";
         }
+        else {
+            sudoData.outputText += "<li><b>Backtrack:</b></li>";
+        }
         
         for (var cell = 0; cell < 81; cell++){
                 
