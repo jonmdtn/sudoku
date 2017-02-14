@@ -1,0 +1,93 @@
+<head>
+    <script src="scripts/sudoku.js"></script>
+    <script src="scripts/nobrute.js"></script>
+    <script src="scripts/backtrack.js"></script>
+    <script src="scripts/grids.js"></script>
+    <script src="nonbruteforce.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<!--<style>
+    /* 
+    CSS Style from: GCyrillus. (2014, May 6). How to make a sudoku grid usin HTML and CSS [Answer 1]. Message posted to http://www.stackoverflow.com/questions/23497444/how-to-make-a-sudoku-grid-using-html-and-css
+    */
+    table {
+        margin:1em auto;
+    }
+    td {
+        height:30px;
+        width:30px;
+        border:1px solid;
+        text-align:center;
+    }
+    td input{
+        width:30px;
+        height:30px;
+        font-size: 15px;
+        text-align: center;
+    }
+    td:first-child {
+        border-left:solid;
+    }
+    td:nth-child(3n) {
+        border-right:solid ;
+    }
+    tr:first-child {
+        border-top:solid;
+    }
+    tr:nth-child(3n) td {
+        border-bottom:solid ;
+    }
+</style>-->
+<body>
+<form name="sform" id="formgrid" onsubmit="return getNumbers()" method="post"></form>
+
+<script>
+    
+    // Self executing anonymous function that will create the sudoku grid
+    // This uses less space than 81 HTML input elements and allows to dynamically assign names to input
+    // HTML table altered from: user3034861. (2014, May 6). How to make a sudoku grid using HTML and CSS. Message posted to http://www.stackoverflow.com/questions/23497444/how-to-make-a-sudoku-grid-using-html-and-css
+    (function(){
+
+        // Initialize counter and the string which will be the final html output of the function
+        var counter = 0,
+            HtmlString = "<table id='grid' border='1' style='border-collapse: collapse;'>";
+
+        for (var i=0;i<9;i++){
+            
+            // Start table row
+            HtmlString += "<tr class='row'>";
+
+            for (var j=0;j<9;j++){
+                
+                // Add 9 input 'cells' to our grid, each with a unique identifying name
+                // This makes the retrieving of information from our input grid much easier
+                HtmlString += "<td class='cell'><input type='text' onkeypress='return event.charCode >= 48 && event.charCode <= 57' name='n"+counter+"' maxlength='1'></td>";
+                counter++;
+                // for onkeypress: inspite. (2014, September 5). HTML Text Input allow only Numeric input [Answer 1]. Message posted to http://www.stackoverflow.com/questions/469357/html-text-input-allow-only-numeric-input
+            }
+            
+            // End table row, final output will be 9 rows each with 9 input cells in them
+            HtmlString += "</tr>";
+            
+        }
+        
+        // Append end of table and buttons for different solving methods
+        HtmlString += "</table>" + 
+                        "<button class='optionbuttons' type='button' onclick='grids.loadRandom(\"easy\")'>Load easy puzzle</button>" +
+                        "<button class='optionbuttons' type='button' onclick='grids.loadRandom(\"medium\")'>Load medium puzzle</button>" +
+                        "<button class='optionbuttons' type='button' onclick='grids.loadRandom(\"hard\")'>Load hard puzzle</button><br>" +
+                        "<button class='optionbuttons' type='button' onclick='backtrack.run(true, false)'>Backtrack using candidates</button>" +
+                        "<button class='optionbuttons' type='button' onclick='backtrack.run(false, false)'>Backtrack without candidates</button><br>" +
+                        "<button class='optionbuttons' type='button' onclick='noBrute.run(true)'>Simple solve with candidate backtracking</button>"+
+                        "<button class='optionbuttons' type='button' onclick='noBrute.run(true)'>Simple solve with no candidate backtracking</button><br>"+
+                        "<button class='optionbuttons' type='button' onclick='javascript: sudokuGrid.unSolve()'>Unsolve</button>" +
+                        "<button class='optionbuttons' type='button' onclick='sudokuGrid.reset()'>Reset</button>" +
+                        "<h2>Results:</h2><ul id='outputlist'></ul><a href='instructions.html'>Instructions & Help</a>";
+
+        // Set innerHTML of formgrid to the final string created by the function
+        document.getElementById("formgrid").innerHTML = HtmlString;
+
+    })();// The final () on the end on this line is what executes the function
+    
+</script>
+</body>

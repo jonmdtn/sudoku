@@ -1,0 +1,57 @@
+/* 
+    CSS Style for grid from: GCyrillus. (2014, May 6). How to make a sudoku grid usin HTML and CSS [Answer 1]. Message posted to http://www.stackoverflow.com/questions/23497444/how-to-make-a-sudoku-grid-using-html-and-css
+ */
+
+#grid {
+    margin:1em auto;
+}
+.cell {
+    height:30px;
+    width:30px;
+    border:1px solid;
+    text-align:center;
+}
+.cell input {
+    width:30px;
+    height:30px;
+    font-size: 15px;
+    text-align: center;
+}
+.cell:first-child {
+    border-left:solid;
+}
+.cell:nth-child(3n) {
+    border-right:solid ;
+}
+.row:first-child {
+    border-top:solid;
+}
+.row:nth-child(3n) td {
+    border-bottom:solid ;
+}
+
+body {
+    text-align:center;
+    min-width:600px;
+}
+
+.optionbuttons {
+    margin: 0 auto;
+    width: 300px;
+    display: block;
+    height: 30px;
+    background-color: lightgray;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+#outputlist {
+    padding:10px;
+    text-align:center;
+    list-style: none;
+    width:300px;
+    height:150px;
+    background-color:#d9d9d9;
+    display:block;
+    margin: 20px auto;
+}
